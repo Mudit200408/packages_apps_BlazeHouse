@@ -26,7 +26,7 @@ import androidx.preference.Preference;
 import androidx.preference.PreferenceGroup;
 import androidx.preference.PreferenceScreen;
 import androidx.preference.Preference.OnPreferenceChangeListener;
-import androidx.preference.SwitchPreference;
+import androidx.preference.SwitchPreferenceCompat;
 
 import com.android.internal.logging.nano.MetricsProto;
 
@@ -47,9 +47,9 @@ public class System extends SettingsPreferenceFragment implements
     private static final String SYS_PHOTOS_SPOOF = "persist.sys.pixelprops.gphotos";
     private static final String SYS_NETFLIX_SPOOF = "persist.sys.spoof_netflix";
 
-    private SwitchPreference mGamesSpoof;
-    private SwitchPreference mPhotosSpoof;
-    private SwitchPreference mNetFlixSpoof;
+    private SwitchPreferenceCompat mGamesSpoof;
+    private SwitchPreferenceCompat mPhotosSpoof;
+    private SwitchPreferenceCompat mNetFlixSpoof;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -61,15 +61,15 @@ public class System extends SettingsPreferenceFragment implements
 
         ContentResolver resolver = getActivity().getContentResolver();
 
-        mGamesSpoof = (SwitchPreference) prefScreen.findPreference(KEY_GAMES_SPOOF);
+        mGamesSpoof = (SwitchPreferenceCompat) prefScreen.findPreference(KEY_GAMES_SPOOF);
         mGamesSpoof.setChecked(SystemProperties.getBoolean(SYS_GAMES_SPOOF, false));
         mGamesSpoof.setOnPreferenceChangeListener(this);
 
-        mPhotosSpoof = (SwitchPreference) prefScreen.findPreference(KEY_PHOTOS_SPOOF);
+        mPhotosSpoof = (SwitchPreferenceCompat) prefScreen.findPreference(KEY_PHOTOS_SPOOF);
         mPhotosSpoof.setChecked(SystemProperties.getBoolean(SYS_PHOTOS_SPOOF, true));
         mPhotosSpoof.setOnPreferenceChangeListener(this);
 
-        mNetFlixSpoof = (SwitchPreference) findPreference(KEY_NETFLIX_SPOOF);
+        mNetFlixSpoof = (SwitchPreferenceCompat) findPreference(KEY_NETFLIX_SPOOF);
         mNetFlixSpoof.setChecked(SystemProperties.getBoolean(SYS_NETFLIX_SPOOF, false));
         mNetFlixSpoof.setOnPreferenceChangeListener(this);
     }
